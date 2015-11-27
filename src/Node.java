@@ -6,7 +6,7 @@ public class Node {
     private Object obj;
     private Node node;
 
-    Node () {
+    public Node () {
 
     }
 

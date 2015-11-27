@@ -6,6 +6,10 @@ public class SimpleLinkedList {
     private Node root;
     private int size;
 
+    public SimpleLinkedList () {
+        size = 0;
+    }
+
     public void addFirst (Object obj) {
 
     }
