@@ -34,12 +34,43 @@ public class SimpleLinkedList {
             node = node.nodeNext;
         }
 
+        node.nodeNext = node;
         node.obj = obj;
-        size ++;
+        size++;
     }
 
     public void addAfter(Object objToAdd, Object objBefore) {
+        Node node = new Node();
+        node.obj = objToAdd;
 
+        if (this.getSize() > 1) {
+
+            Node current = root;
+
+            for (int i = 0; i < this.size; i++) {
+
+                if (objBefore.equals(current.obj)) {
+                    if (current.nodeNext == null) {
+                        System.out.println("Element has last position");
+                        break;
+                    } else {
+                        node.nodeNext = current.nodeNext;
+                        current.nodeNext = node;
+                        break;
+                    }
+                }
+                current = current.nodeNext;
+                if (current == null) {
+                    throw new IllegalStateException("No element");
+                }
+
+            }
+
+            size++;
+
+        } else {
+            System.out.println("Cant insert!");
+        }
     }
 
     public int getSize() {
