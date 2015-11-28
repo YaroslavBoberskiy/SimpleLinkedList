@@ -24,7 +24,18 @@ public class SimpleLinkedList {
     }
 
     public void addLast(Object obj) {
+        Node node = new Node();
 
+        if (root == null & this.getSize() == 0) {
+            this.addFirst(obj);
+        }
+
+        while (node.nodeNext != null) {
+            node = node.nodeNext;
+        }
+
+        node.obj = obj;
+        size ++;
     }
 
     public void addAfter(Object objToAdd, Object objBefore) {
