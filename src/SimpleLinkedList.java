@@ -13,7 +13,7 @@ public class SimpleLinkedList {
     public void addFirst(Object obj) {
         Node node = new Node();
         node.obj = obj;
-        if (this.getSize() == 0) {
+        if (root == null) {
             size++;
             root = node;
         } else {
