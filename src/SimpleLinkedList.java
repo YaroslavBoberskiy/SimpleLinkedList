@@ -27,15 +27,10 @@ public class SimpleLinkedList {
         return size;
     }
 
-    public class Node {
+    private class Node {
 
         private Object obj;
         private Node node;
-
-        public Node() {
-
-        }
-
     }
 
 }
