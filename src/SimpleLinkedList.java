@@ -11,7 +11,16 @@ public class SimpleLinkedList {
     }
 
     public void addFirst(Object obj) {
-
+        Node node = new Node();
+        node.obj = obj;
+        if (this.getSize() == 0) {
+            size++;
+            root = node;
+        } else {
+            node.nodeNext = root;
+            root = node;
+            size++;
+        }
     }
 
     public void addLast(Object obj) {
@@ -30,7 +39,7 @@ public class SimpleLinkedList {
     private class Node {
 
         private Object obj;
-        private Node node;
+        private Node nodeNext;
     }
 
 }
