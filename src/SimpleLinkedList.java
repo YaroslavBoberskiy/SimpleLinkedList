@@ -25,18 +25,20 @@ public class SimpleLinkedList {
 
     public void addLast(Object obj) {
         Node node = new Node();
+        Node cp = root;
 
         if (root == null & this.getSize() == 0) {
             this.addFirst(obj);
-        }
+        } else {
+            node.obj = obj;
+            while (cp.nodeNext != null) {
+                cp = cp.nodeNext;
+            }
 
-        while (node.nodeNext != null) {
-            node = node.nodeNext;
+            cp.nodeNext = node;
+            node.nodeNext = null;
+            size++;
         }
-
-        node.nodeNext = node;
-        node.obj = obj;
-        size++;
     }
 
     public void addAfter(Object objToAdd, Object objBefore) {
@@ -45,29 +47,27 @@ public class SimpleLinkedList {
 
         if (this.getSize() > 1) {
 
-            Node current = root;
+            Node cp = root;
 
             for (int i = 0; i < this.size; i++) {
 
-                if (objBefore.equals(current.obj)) {
-                    if (current.nodeNext == null) {
+                if (objBefore.equals(cp.obj)) {
+                    if (cp.nodeNext == null) {
                         System.out.println("Element has last position");
                         break;
                     } else {
-                        node.nodeNext = current.nodeNext;
-                        current.nodeNext = node;
+                        node.nodeNext = cp.nodeNext;
+                        cp.nodeNext = node;
+                        size++;
                         break;
                     }
                 }
-                current = current.nodeNext;
-                if (current == null) {
+                cp = cp.nodeNext;
+                if (cp == null) {
                     throw new IllegalStateException("No element");
                 }
 
             }
-
-            size++;
-
         } else {
             System.out.println("Cant insert!");
         }
@@ -76,6 +76,19 @@ public class SimpleLinkedList {
     public int getSize() {
 
         return size;
+    }
+
+    public void printList() {
+        if (size == 0) {
+            System.out.println("List is empty!");
+        } else {
+            Node cp = root;
+            while (cp.nodeNext != null) {
+                System.out.print(cp.obj + ", ");
+                cp = cp.nodeNext;
+            }
+            System.out.println(cp.obj);
+        }
     }
 
     private class Node {
