@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 /**
  * Created by YB on 27.11.2015.
  */
@@ -5,8 +7,7 @@ public class DemoLauncher {
 
     private static SimpleLinkedList sll = new SimpleLinkedList();
 
-    public static void main(String [ ] args)
-    {
+    public static void main(String [ ] args) {
         sll.printList();
         sll.addFirst("A");
         sll.printList();
@@ -30,6 +31,8 @@ public class DemoLauncher {
         sll.addAfter("M", "Y");
         sll.printList();
         System.out.println("Size: " + sll.getSize());
-    }
 
+        //System.out.println(sll.iterator().hasNext());
+
+    }
 }

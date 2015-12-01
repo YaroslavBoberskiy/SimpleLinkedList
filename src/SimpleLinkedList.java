@@ -1,7 +1,10 @@
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * Created by YB on 27.11.2015.
  */
-public class SimpleLinkedList {
+public class SimpleLinkedList implements Iterable<Object> {
 
     private Node root;
     private int size;
@@ -66,7 +69,6 @@ public class SimpleLinkedList {
                 if (cp == null) {
                     throw new IllegalStateException("No element");
                 }
-
             }
         } else {
             System.out.println("Cant insert!");
@@ -91,10 +93,40 @@ public class SimpleLinkedList {
         }
     }
 
+    @Override
+    public Iterator<Object> iterator() {
+        return new SLLIterator();
+    }
+
+
     private class Node {
 
         private Object obj;
         private Node nodeNext;
     }
 
+    public class SLLIterator implements Iterator<Object> {
+
+        Node node = new Node();
+
+        @Override
+        public boolean hasNext() {
+
+            if (node.nodeNext != null && node.nodeNext.obj != null) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        @Override
+        public Object next() {
+
+            if (hasNext()) {
+                return node.nodeNext.obj;
+            } else {
+                throw new NoSuchElementException();
+            }
+        }
+    }
 }
