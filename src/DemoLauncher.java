@@ -38,13 +38,10 @@ public class DemoLauncher {
             System.out.println(str);
         }
 
-        sll.remove(0);
+        sll.remove("Y");
         sll.printList();
         System.out.println("Size: " + sll.getSize());
 
-        sll.remove(0);
-        sll.printList();
-        System.out.println("Size: " + sll.getSize());
 
     }
 }

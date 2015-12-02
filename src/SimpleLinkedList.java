@@ -103,7 +103,7 @@ public class SimpleLinkedList implements Iterable<Object> {
                             }
                         }
 
-                        size --;
+                        size--;
                         break;
                     }
                     cp = cp.nodeNext;
@@ -113,6 +113,29 @@ public class SimpleLinkedList implements Iterable<Object> {
             }
         } else {
             System.out.println("There is no element with such index in the list!");
+        }
+    }
+
+    public void remove(Object o) {
+        Node cp = root;
+        Node prevP = root;
+        if (root != null && size > 0) {
+            while (!cp.obj.equals(o)) {
+                prevP = cp;
+                cp = cp.nodeNext;
+            }
+            if (cp.nodeNext == null) {
+                prevP.nodeNext = null;
+                size--;
+            } else if (prevP == root) {
+                root = cp.nodeNext;
+                cp.nodeNext = null;
+                size--;
+            } else {
+                prevP.nodeNext = cp.nodeNext;
+                cp.nodeNext = null;
+                size--;
+            }
         }
     }
 
