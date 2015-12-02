@@ -102,6 +102,7 @@ public class SimpleLinkedList implements Iterable<Object> {
                                 cp.nodeNext = null;
                             }
                         }
+
                         size --;
                         break;
                     }
