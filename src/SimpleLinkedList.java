@@ -75,6 +75,46 @@ public class SimpleLinkedList implements Iterable<Object> {
         }
     }
 
+    public void remove(int idx) {
+
+        if (idx >= 0 && idx < size) {
+
+            Node cp = root;
+            int cpIdx = 0;
+
+            if (root == null && getSize() == 0) {
+                throw new IllegalStateException("list is already empty");
+            }
+
+            if (idx == 0 && cp.nodeNext == null) {
+                root = null;
+                size--;
+            } else {
+                int tempIdx = 0;
+                while (cp.nodeNext != null) {
+                    if (cpIdx == idx) {
+                        while (cp.nodeNext != null) {
+                            cp.obj = cp.nodeNext.obj;
+                            cp = cp.nodeNext;
+                            tempIdx++;
+                            if ((size - 1 - tempIdx) == idx) {
+                                cp.obj = null;
+                                cp.nodeNext = null;
+                            }
+                        }
+                        size --;
+                        break;
+                    }
+                    cp = cp.nodeNext;
+                    cpIdx++;
+                    tempIdx++;
+                }
+            }
+        } else {
+            System.out.println("There is no element with such index in the list!");
+        }
+    }
+
     public int getSize() {
 
         return size;
@@ -89,7 +129,9 @@ public class SimpleLinkedList implements Iterable<Object> {
                 System.out.print(cp.obj + ", ");
                 cp = cp.nodeNext;
             }
+
             System.out.println(cp.obj);
+
         }
     }
 
@@ -107,23 +149,26 @@ public class SimpleLinkedList implements Iterable<Object> {
 
     public class SLLIterator implements Iterator<Object> {
 
-        Node node = new Node();
+        Node node;
 
         @Override
         public boolean hasNext() {
 
-            if (node.nodeNext != null && node.nodeNext.obj != null) {
-                return true;
-            } else {
-                return false;
-            }
+            return (node == null && root != null) || (node != null && node.nodeNext != null);
+
         }
 
         @Override
         public Object next() {
 
+            if (node == null && root != null) {
+                node = root;
+                return node.obj;
+            }
+
             if (hasNext()) {
-                return node.nodeNext.obj;
+                node = node.nodeNext;
+                return node.obj;
             } else {
                 throw new NoSuchElementException();
             }

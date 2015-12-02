@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -32,7 +33,18 @@ public class DemoLauncher {
         sll.printList();
         System.out.println("Size: " + sll.getSize());
 
-        //System.out.println(sll.iterator().hasNext());
+        for (Object o : sll) {
+            String str = (String) o;
+            System.out.println(str);
+        }
+
+        sll.remove(0);
+        sll.printList();
+        System.out.println("Size: " + sll.getSize());
+
+        sll.remove(0);
+        sll.printList();
+        System.out.println("Size: " + sll.getSize());
 
     }
 }
